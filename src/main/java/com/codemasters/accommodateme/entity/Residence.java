@@ -22,7 +22,12 @@ public class Residence {
     private Long residenceId;
 
     private String name;
+    private String slogan;
+    private String email;
     private int regNo;
+    private int totalNumberOfRooms;
+    private int totalNumberOfSingleRooms;
+    private int totalNumberOfDoubleRooms;
     private List<String> utility = new ArrayList<>();
     private String profileImage;
     private List<String> images = new ArrayList<>();
@@ -30,7 +35,7 @@ public class Residence {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "adminId", referencedColumnName = "id", nullable = false)
     private User users;
 
     @OneToMany(mappedBy = "residence")
@@ -39,13 +44,10 @@ public class Residence {
     @OneToMany(mappedBy = "residence")
     private List<Issues> issues;
 
-
-
     @OneToMany(mappedBy = "residence")
     private List<Location> location;
 
     @OneToMany(mappedBy = "residence")
     private List<Application> applications;
-
 
 }
