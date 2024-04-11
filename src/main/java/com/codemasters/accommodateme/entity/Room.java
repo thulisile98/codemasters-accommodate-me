@@ -20,7 +20,7 @@ public class Room {
     @Column(name = "room_id")
     private Long roomId;
 
-    private Integer roomNumber;
+    private String roomNumber;
     private String roomType;
 
     @JsonIgnore
@@ -32,4 +32,3 @@ public class Room {
     private Residence residence;
 
 }
-
