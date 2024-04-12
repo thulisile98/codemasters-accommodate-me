@@ -16,9 +16,9 @@ public interface RoomService {
 
     Optional<Room> getRoomByResidenceId(Long resId);
 
-    // Room getRoomByNumber(String roomNumber);
+    Optional<Room> getRoomByRoomNumber(String roomNumber);
 
-    // Room findRoomByType(String roomType);
+    Optional<Room> getRoomByRoomType(String roomType);
 
     void deleteRoom(Long resId);
 }

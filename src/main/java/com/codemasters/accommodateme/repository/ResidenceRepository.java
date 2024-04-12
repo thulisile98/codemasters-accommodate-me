@@ -9,4 +9,5 @@ import com.codemasters.accommodateme.entity.Residence;
 public interface ResidenceRepository extends JpaRepository<Residence, Long> {
     Optional<Residence> findResidenceByEmail(String email);
 
+    Optional<Residence> findByName(String name);
 }

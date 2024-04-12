@@ -15,7 +15,13 @@ import com.codemasters.accommodateme.repository.ResidenceRepository;
 public class RoomServiceImpl implements RoomService {
 
     private RoomRepository roomRepository;
+
     private ResidenceRepository residenceRepository;
+
+    public RoomServiceImpl(RoomRepository roomRepository, ResidenceRepository residenceRepository) {
+        this.roomRepository = roomRepository;
+        this.residenceRepository = residenceRepository;
+    }
 
     @Override
     public String addRoom(Room room, Long resId) {
@@ -74,11 +80,6 @@ public class RoomServiceImpl implements RoomService {
 
     }
 
-    // @Override
-    // public Room findRoomByType(String roomType) {
-    // return roomRepository.getRoomByType(roomType);
-    // }
-
     @Override
     public void deleteRoom(Long id) {
         roomRepository.deleteById(id);
@@ -95,9 +96,26 @@ public class RoomServiceImpl implements RoomService {
         }
     }
 
-    // @Override
-    // public Room getRoomByNumber(String roomNumber) {
-    // return roomRepository.getRoomByNumber(roomNumber);
-    // }
+    @Override
+    public Optional<Room> getRoomByRoomNumber(String roomNumber) {
+        Optional<Room> foundRoom = roomRepository.getRoomByRoomNumber(roomNumber);
+
+        if (foundRoom.isPresent()) {
+            return foundRoom;
+        } else {
+            throw new RuntimeException("Room with number: " + roomNumber + " not found");
+        }
+    }
+
+    @Override
+    public Optional<Room> getRoomByRoomType(String roomType) {
+        Optional<Room> foundRoom = roomRepository.getRoomByRoomType(roomType);
+
+        if (foundRoom.isPresent()) {
+            return foundRoom;
+        } else {
+            throw new RuntimeException("Room with number: " + roomType + " not found");
+        }
+    }
 
 }
