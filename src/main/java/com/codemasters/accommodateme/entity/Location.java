@@ -1,6 +1,5 @@
 package com.codemasters.accommodateme.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,11 +19,12 @@ public class Location {
 
     private String city;
     private String province;
+    private String area;
     private String streetName;
     private int zipCode;
     private int streetNumber;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "residence_id", nullable = false)
     private Residence residence;
 
