@@ -21,7 +21,7 @@ public class User {
     private Integer id;
     private String email;
     private String password;
-   // private String role;
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
