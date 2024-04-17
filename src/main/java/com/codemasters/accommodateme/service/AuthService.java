@@ -53,11 +53,10 @@ public class AuthService {
         try {
 
              savedUser = ourUserRepo.save(user);
-            //add a role to user
-            roleService.addRoleToUser( savedUser.getId(),ROLE_USER.name());
-           //roleService.addRoleToUser( savedUser.getId(),ROLE_ADMIN.name());
 
-            //Check the user principal if roles and permission are correct
+            roleService.addRoleToUser( savedUser.getId(),ROLE_USER.name());
+
+
             userPrincipal = new UserPrincipal(savedUser, savedUser.getRole().getPermission());
 
         }catch (Exception e){
@@ -76,6 +75,41 @@ public class AuthService {
                 .build();
     }
 
+
+
+    public HttpResponse registerAdmin(User registrationRequest) {
+        User savedUser;
+        UserPrincipal userPrincipal;
+        User user = User.builder()
+                .email(registrationRequest.getEmail())
+                .password(passwordEncoder.encode(registrationRequest.getPassword()))
+                .build();
+
+        try {
+
+            savedUser = ourUserRepo.save(user);
+
+            roleService.addRoleToUser( savedUser.getId(),ROLE_ADMIN.name());
+
+
+            userPrincipal = new UserPrincipal(savedUser, savedUser.getRole().getPermission());
+
+        } catch (Exception e) {
+            return  HttpResponse.builder()
+                    .timeStamp(now().toString())
+                    .message(e.getMessage())
+                    .build();
+        }
+
+        return HttpResponse.builder()
+                .timeStamp(now().toString())
+                .data(of("User", userPrincipal))
+                .message("Admin created successfully")
+                .status(CREATED)
+                .statusCode(CREATED.value())
+                .build();
+    }
+
     public HttpResponse login(LoginForm loginRequest){
         HttpResponse response;
         UserPrincipal userPrincipal;
@@ -87,7 +121,7 @@ public class AuthService {
              userPrincipal = new UserPrincipal(user, user.getRole().getPermission());
 
 
-            //System.out.println("USER IS: "+ userPrincipal);
+
             log.info("User : {}", userPrincipal);
             var jwt = jwtUtils.generateToken(userPrincipal);
             var refreshToken = jwtUtils.generateRefreshToken(new HashMap<>(), userPrincipal);

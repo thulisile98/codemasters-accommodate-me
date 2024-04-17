@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.codemasters.accommodateme.enumeration.RoleType.ROLE_ADMIN;
 import static com.codemasters.accommodateme.enumeration.RoleType.ROLE_USER;
 
 @Service
@@ -31,7 +32,7 @@ public class OurUserDetailsService implements UserDetailsService {
         }
 
 
-        return new UserPrincipal(user, ROLE_USER.name());  //for now assign default role as USER
+        return new UserPrincipal(user, ROLE_ADMIN.name());
     }
 
 

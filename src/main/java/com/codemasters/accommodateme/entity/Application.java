@@ -1,5 +1,6 @@
 package com.codemasters.accommodateme.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -51,6 +52,7 @@ public class Application {
     @Column(name = "applied_at", columnDefinition = "TIMESTAMP")
     private Instant appliedAt;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
     private User users;

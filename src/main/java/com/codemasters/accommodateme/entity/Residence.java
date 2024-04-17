@@ -44,6 +44,7 @@ public class Residence {
     @OneToMany(mappedBy = "residence")
     private List<Location> location;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "residence")
     private List<Application> applications;
 
