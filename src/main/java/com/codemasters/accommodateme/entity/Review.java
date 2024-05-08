@@ -24,10 +24,7 @@ public class Review {
     @Column(name = "posted_at", columnDefinition = "TIMESTAMP")
     private Instant postedAt;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
-    private User users;
+
 
 
 

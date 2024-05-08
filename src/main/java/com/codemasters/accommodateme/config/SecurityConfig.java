@@ -30,10 +30,11 @@ public class SecurityConfig {
     @Autowired
     private OurUserDetailsService ourUserDetailsService;
     @Autowired
-    private JWTAuthFilter jwtAuthFIlter;
-
-    private  CustomAccessDeniedHandler customAccessDeniedHandler;
-    private  CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+    private JWTAuthFilter jwtAuthFilter;
+    @Autowired
+    private CustomAccessDeniedHandler customAccessDeniedHandler;
+    @Autowired
+    private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
     private static final String[] PUBLIC_URLS = {
             "/auth/**",
@@ -69,7 +70,7 @@ public class SecurityConfig {
 
 
                 httpSecurity.authenticationProvider(authenticationProvider()).addFilterBefore(
-                        jwtAuthFIlter, UsernamePasswordAuthenticationFilter.class
+                        jwtAuthFilter, UsernamePasswordAuthenticationFilter.class
                 );
 
         return httpSecurity.build();
