@@ -1,5 +1,7 @@
 package com.codemasters.accommodateme.entity;
 
+import com.codemasters.accommodateme.enumeration.IssuesPriority;
+import com.codemasters.accommodateme.enumeration.IssuesStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +24,6 @@ public class Issues {
     private String title;
 
     private String description;
-    private String status;
 
     @Column(name = "reported_at", columnDefinition = "TIMESTAMP")
     private Date reportedAt;
@@ -38,6 +39,12 @@ public class Issues {
     @JoinColumn(name = "residence_id", nullable = true)
     private Residence residence;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private IssuesStatus status = IssuesStatus.REPORTED;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private IssuesPriority priority = IssuesPriority.MEDIUM;
 
 }
