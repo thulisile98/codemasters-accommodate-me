@@ -105,6 +105,6 @@ public class AnnouncementController {
             @RequestParam(required = false) String heading,
             @RequestParam(required = false) String body,
             @RequestParam(required = false) Instant createdAt) {
-        return announcementsService.searchAnnouncement(heading, body, createdAt);
+        return announcementsService.searchAnnouncements(heading, body, createdAt);
     }
 }

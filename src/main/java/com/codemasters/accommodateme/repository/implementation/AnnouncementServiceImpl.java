@@ -156,7 +156,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     }
 
     @Override
-    public List<Announcement> searchAnnouncement(String heading, String body, Instant createdAt) {
+    public List<Announcement> searchAnnouncements(String heading, String body, Instant createdAt) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Announcement> cq = cb.createQuery(Announcement.class);
         Root<Announcement> root = cq.from(Announcement.class);

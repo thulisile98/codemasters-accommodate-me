@@ -21,5 +21,5 @@ public interface AnnouncementService {
 
     List<AnnouncementDTO> getAnnouncementByDatePosted(Instant createdAt);
 
-    List<Announcement> searchAnnouncement(String heading, String body, Instant createdAt);
+    List<Announcement> searchAnnouncements(String heading, String body, Instant createdAt);
 }

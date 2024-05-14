@@ -8,7 +8,7 @@ import java.time.Instant;
 @Data
 @AllArgsConstructor
 public class AnnouncementDTO {
-    private Long announcementId;
+    private Integer announcementId;
     private String heading;
     private String body;
     private String imageUrl;
