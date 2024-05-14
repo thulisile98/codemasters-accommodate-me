@@ -19,13 +19,14 @@ public class Location {
     private Integer locationId;
 
     private String city;
+    private String area;
     private String province;
     private String streetName;
     private int zipCode;
     private int streetNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "residence_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "residence_id", referencedColumnName = "residence_id", nullable = false)
     private Residence residence;
-
 }
+
